@@ -14,6 +14,12 @@ export interface Category {
   items: CategoryItem[];
 }
 
+export interface ColorScheme {
+  primary: string;
+  secondary: string;
+  accent: string;
+}
+
 export interface CurriculumData {
   nome: string;
   email: string;
@@ -22,6 +28,7 @@ export interface CurriculumData {
   experiencia: string;
   habilidades: string;
   categories: Category[];
+  colorScheme?: ColorScheme;
 }
 
 export type TemplateType = "modern" | "classic" | "minimal";

@@ -5,7 +5,8 @@ import dynamic from "next/dynamic";
 import PreviewPanel from "./components/PreviewPanel";
 import TemplateSelector from "./components/TemplateSelector";
 import CategoryManager from "./components/CategoryManager";
-import { CurriculumData } from "./components/types";
+import ColorPicker from "./components/ColorPicker";
+import { CurriculumData, ColorScheme } from "./components/types";
 
 // Importar PdfDownloadButton dinamicamente para evitar problemas com @react-pdf/renderer no SSR
 const PdfDownloadButton = dynamic(
@@ -13,7 +14,19 @@ const PdfDownloadButton = dynamic(
   { ssr: false }
 );
 
+const getDefaultColors = (template: "modern" | "classic" | "minimal"): ColorScheme => {
+  switch (template) {
+    case "modern":
+      return { primary: "#4f46e5", secondary: "#3b82f6", accent: "#60a5fa" };
+    case "classic":
+      return { primary: "#1f2937", secondary: "#374151", accent: "#4b5563" };
+    case "minimal":
+      return { primary: "#6b7280", secondary: "#9ca3af", accent: "#d1d5db" };
+  }
+};
+
 export default function Home() {
+  const [template, setTemplate] = useState<"modern" | "classic" | "minimal">("modern");
   const [data, setData] = useState<CurriculumData>({
     nome: "",
     email: "",
@@ -22,9 +35,18 @@ export default function Home() {
     experiencia: "",
     habilidades: "",
     categories: [],
+    colorScheme: getDefaultColors("modern"),
   });
-  const [template, setTemplate] = useState<"modern" | "classic" | "minimal">("modern");
   const [showPreview, setShowPreview] = useState(false);
+
+  // Handler para atualizar template e cores ao mesmo tempo
+  const handleTemplateChange = (newTemplate: "modern" | "classic" | "minimal") => {
+    setTemplate(newTemplate);
+    setData(prev => ({
+      ...prev,
+      colorScheme: getDefaultColors(newTemplate),
+    }));
+  };
 
   return (
     <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black py-12">
@@ -45,7 +67,15 @@ export default function Home() {
               Editor de Dados
             </h2>
 
-            <TemplateSelector currentTemplate={template} onTemplateChange={setTemplate} />
+            <TemplateSelector currentTemplate={template} onTemplateChange={handleTemplateChange} />
+
+            <div className="mt-6">
+              <ColorPicker
+                colorScheme={data.colorScheme || getDefaultColors(template)}
+                onColorChange={(colorScheme) => setData({ ...data, colorScheme })}
+                template={template}
+              />
+            </div>
 
             <div className="mt-8">
               <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">

@@ -13,6 +13,13 @@ export default function PdfDownloadButton({ data, template }: PdfDownloadButtonP
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [ReactPDF, setReactPDF] = useState<any>(null);
 
+  // Cores padrão ou personalizadas
+  const colors = data.colorScheme || {
+    primary: template === "modern" ? "#4f46e5" : template === "classic" ? "#1f2937" : "#6b7280",
+    secondary: template === "modern" ? "#3b82f6" : template === "classic" ? "#374151" : "#9ca3af",
+    accent: template === "modern" ? "#60a5fa" : template === "classic" ? "#4b5563" : "#d1d5db",
+  };
+
   useEffect(() => {
     if (isLoaded && !ReactPDF) {
       import("@react-pdf/renderer").then((mod) => {
@@ -52,33 +59,33 @@ export default function PdfDownloadButton({ data, template }: PdfDownloadButtonP
     switch (template) {
       case "modern":
         return {
-          header: { backgroundColor: "#4f46e5", color: "white", padding: 20, marginBottom: 15 },
+          header: { backgroundColor: colors.primary, color: "white", padding: 20, marginBottom: 15 },
           headerTitle: { fontSize: 32, fontWeight: "bold", marginBottom: 6, letterSpacing: -0.5 },
           headerInfo: { fontSize: 11, opacity: 0.9 },
-          sectionTitle: { fontSize: 16, fontWeight: "bold", color: "#2563eb", borderBottom: "2 solid #2563eb", paddingBottom: 4, marginBottom: 10, marginTop: 15 },
+          sectionTitle: { fontSize: 16, fontWeight: "bold", color: colors.primary, borderBottom: `2 solid ${colors.primary}`, paddingBottom: 4, marginBottom: 10, marginTop: 15 },
           text: { fontSize: 11, lineHeight: 1.6, color: "#374151", textAlign: "justify" },
-          categoryBorder: { borderLeft: "4 solid #3b82f6", paddingLeft: 10, backgroundColor: "#eff6ff", padding: 10, marginBottom: 10, borderRadius: 4 },
-          skill: { backgroundColor: "#3b82f6", color: "white", padding: "4 8", borderRadius: 12, fontSize: 9, marginRight: 4, marginBottom: 4 },
+          categoryBorder: { borderLeft: `4 solid ${colors.secondary}`, paddingLeft: 10, backgroundColor: `${colors.secondary}15`, padding: 10, marginBottom: 10, borderRadius: 4 },
+          skill: { backgroundColor: colors.secondary, color: "white", padding: "4 8", borderRadius: 12, fontSize: 9, marginRight: 4, marginBottom: 4 },
         };
       case "classic":
         return {
-          header: { borderBottom: "4 solid #1f2937", paddingBottom: 15, paddingTop: 5, marginBottom: 15 },
-          headerTitle: { fontSize: 32, fontWeight: "bold", color: "#111827", marginBottom: 6, fontFamily: "Times-Roman", letterSpacing: -0.5 },
-          headerInfo: { fontSize: 11, color: "#4b5563", fontFamily: "Times-Roman" },
-          sectionTitle: { fontSize: 14, fontWeight: "bold", color: "#111827", borderBottom: "1 solid #9ca3af", paddingBottom: 3, marginBottom: 10, marginTop: 15, textTransform: "uppercase", letterSpacing: 1.5 },
+          header: { borderBottom: `4 solid ${colors.primary}`, paddingBottom: 15, paddingTop: 5, marginBottom: 15 },
+          headerTitle: { fontSize: 32, fontWeight: "bold", color: colors.primary, marginBottom: 6, fontFamily: "Times-Roman", letterSpacing: -0.5 },
+          headerInfo: { fontSize: 11, color: colors.secondary, fontFamily: "Times-Roman" },
+          sectionTitle: { fontSize: 14, fontWeight: "bold", color: colors.primary, borderBottom: `1 solid ${colors.secondary}`, paddingBottom: 3, marginBottom: 10, marginTop: 15, textTransform: "uppercase", letterSpacing: 1.5 },
           text: { fontSize: 11, lineHeight: 1.5, color: "#374151", textAlign: "justify" },
-          categoryBorder: { borderLeft: "2 solid #6b7280", paddingLeft: 10, marginBottom: 10 },
-          skill: { backgroundColor: "#1f2937", color: "white", padding: "3 8", borderRadius: 4, fontSize: 9, fontFamily: "Times-Roman", marginRight: 4, marginBottom: 4 },
+          categoryBorder: { borderLeft: `2 solid ${colors.secondary}`, paddingLeft: 10, marginBottom: 10 },
+          skill: { backgroundColor: colors.primary, color: "white", padding: "3 8", borderRadius: 4, fontSize: 9, fontFamily: "Times-Roman", marginRight: 4, marginBottom: 4 },
         };
       case "minimal":
         return {
-          header: { borderBottom: "1 solid #9ca3af", paddingBottom: 10, paddingTop: 5, marginBottom: 15, backgroundColor: "#f9fafb" },
-          headerTitle: { fontSize: 28, fontWeight: "normal", color: "#111827", marginBottom: 5, letterSpacing: 1 },
-          headerInfo: { fontSize: 9, color: "#6b7280", textTransform: "uppercase", letterSpacing: 1.5 },
-          sectionTitle: { fontSize: 13, fontWeight: "normal", color: "#111827", marginBottom: 10, marginTop: 15, textTransform: "uppercase", letterSpacing: 3 },
+          header: { borderBottom: `1 solid ${colors.secondary}`, paddingBottom: 10, paddingTop: 5, marginBottom: 15, backgroundColor: "#f9fafb" },
+          headerTitle: { fontSize: 28, fontWeight: "normal", color: colors.primary, marginBottom: 5, letterSpacing: 1 },
+          headerInfo: { fontSize: 9, color: colors.secondary, textTransform: "uppercase", letterSpacing: 1.5 },
+          sectionTitle: { fontSize: 13, fontWeight: "normal", color: colors.primary, marginBottom: 10, marginTop: 15, textTransform: "uppercase", letterSpacing: 3 },
           text: { fontSize: 11, lineHeight: 1.5, color: "#4b5563", textAlign: "justify" },
-          categoryBorder: { borderLeft: "1 solid #d1d5db", paddingLeft: 10, marginBottom: 10 },
-          skill: { border: "1 solid #9ca3af", color: "#374151", padding: "2 6", borderRadius: 2, fontSize: 8, textTransform: "uppercase", letterSpacing: 0.5, marginRight: 4, marginBottom: 4 },
+          categoryBorder: { borderLeft: `1 solid ${colors.secondary}`, paddingLeft: 10, marginBottom: 10 },
+          skill: { border: `1 solid ${colors.secondary}`, color: colors.primary, padding: "2 6", borderRadius: 2, fontSize: 8, textTransform: "uppercase", letterSpacing: 0.5, marginRight: 4, marginBottom: 4 },
         };
       default:
         return {
@@ -87,7 +94,8 @@ export default function PdfDownloadButton({ data, template }: PdfDownloadButtonP
           headerInfo: { fontSize: 11, color: "#666" },
           sectionTitle: { fontSize: 14, fontWeight: "bold", marginBottom: 5, marginTop: 10 },
           text: { fontSize: 11, lineHeight: 1.5 },
-          categoryBorder: { borderLeft: "2 solid #4299e1", paddingLeft: 10, marginBottom: 10 },
+          categoryBorder: { borderLeft: `2 solid ${colors.primary}`, paddingLeft: 10, marginBottom: 10 },
+          skill: { backgroundColor: `${colors.primary}20`, color: colors.primary, padding: "2 6", borderRadius: 10, fontSize: 9, marginRight: 4, marginBottom: 4 },
         };
     }
   };
