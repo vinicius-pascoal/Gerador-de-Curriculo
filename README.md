@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gerador de Currículo Dinâmico
 
-## Getting Started
+Um aplicativo web moderno para criar, editar e exportar currículos em PDF com múltiplos templates profissionais.
 
-First, run the development server:
+## Funcionalidades
+
+✨ **Editor Visual** - Interface intuitiva para editar dados do currículo
+📄 **Preview em Tempo Real** - Visualize seu currículo conforme edita
+🎨 **Múltiplos Templates** - Escolha entre estilos Moderno, Clássico ou Minimalista
+📥 **Download em PDF** - Exporte seu currículo em formato PDF de alta qualidade
+🌙 **Tema Escuro** - Suporte nativo para modo escuro
+
+## Tecnologias Utilizadas
+
+- **Next.js 16** - Framework React moderno
+- **TypeScript** - Tipagem segura
+- **Tailwind CSS** - Estilização responsiva
+- **@react-pdf/renderer** - Geração de PDFs
+- **React Hooks** - Gerenciamento de estado
+
+## Instalação
 
 ```bash
+# Clonar o repositório
+git clone https://github.com/vinicius-pascoal/Gerador-de-Curriculo.git
+
+# Instalar dependências
+cd Gerador-de-Curriculo
+npm install --legacy-peer-deps
+
+# Executar em desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+O aplicativo estará disponível em [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Como Usar
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Preencha seus dados** no formulário do lado esquerdo
+   - Nome
+   - E-mail
+   - Telefone
+   - Experiência Profissional
+   - Habilidades (separadas por vírgula)
 
-## Learn More
+2. **Escolha um template** de sua preferência
+   - Moderno
+   - Clássico
+   - Minimalista
 
-To learn more about Next.js, take a look at the following resources:
+3. **Visualize a prévia** clicando em "Visualizar Prévia"
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Baixe em PDF** clicando em "Preparar Download" e depois "Baixar Currículo (PDF)"
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Estrutura do Projeto
 
-## Deploy on Vercel
+```
+app/
+├── components/
+│   ├── PdfDownloadButton.tsx    # Componente para download PDF
+│   ├── PreviewPanel.tsx          # Componente de prévia
+│   ├── TemplateSelector.tsx      # Seletor de templates
+│   └── types.ts                  # Tipos TypeScript
+├── layout.tsx                    # Layout principal
+├── page.tsx                      # Página principal
+└── globals.css                   # Estilos globais
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Scripts Disponíveis
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run dev    # Executar servidor de desenvolvimento
+npm run build  # Construir para produção
+npm start      # Executar servidor de produção
+npm run lint   # Executar linter
+```
+
+## Melhorias Futuras
+
+- 📚 Adicionar mais campos (Educação, Certificações)
+- 🎯 Adicionar mais templates
+- 💾 Salvar currículos em banco de dados
+- 🔐 Sistema de autenticação
+- 🌍 Suporte a múltiplos idiomas
+- 📱 Melhorias de responsividade móvel
+
+## Licença
+
+MIT © 2026 Vinicius Pascoal
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
