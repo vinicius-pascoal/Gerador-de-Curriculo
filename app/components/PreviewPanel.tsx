@@ -34,6 +34,14 @@ export default function PreviewPanel({ data, template }: PreviewPanelProps) {
           </div>
         </div>
 
+        {/* Resumo Profissional */}
+        {data.resumo && (
+          <div>
+            <h2 className="text-xl font-bold text-gray-900">Resumo Profissional</h2>
+            <p className="mt-2 text-gray-700 whitespace-pre-wrap">{data.resumo}</p>
+          </div>
+        )}
+
         {/* Experiência Profissional */}
         {data.experiencia && (
           <div>
@@ -58,6 +66,38 @@ export default function PreviewPanel({ data, template }: PreviewPanelProps) {
             </div>
           </div>
         )}
+
+        {/* Categorias Personalizadas */}
+        {data.categories && data.categories.map((category) => (
+          category.items.length > 0 && (
+            <div key={category.id}>
+              <h2 className="text-xl font-bold text-gray-900">{category.name}</h2>
+              <div className="mt-2 space-y-4">
+                {category.items.map((item) => (
+                  <div key={item.id} className="border-l-2 border-blue-500 pl-4">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h3 className="font-semibold text-gray-900">{item.title}</h3>
+                        {item.subtitle && (
+                          <p className="text-sm text-gray-600">{item.subtitle}</p>
+                        )}
+                      </div>
+                      <div className="text-right text-sm text-gray-600">
+                        {item.date && <p>{item.date}</p>}
+                        {item.location && <p>{item.location}</p>}
+                      </div>
+                    </div>
+                    {item.description && (
+                      <p className="mt-1 text-sm text-gray-700 whitespace-pre-wrap">
+                        {item.description}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        ))}
       </div>
     </div>
   );

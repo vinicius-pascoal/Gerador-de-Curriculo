@@ -4,6 +4,7 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import PreviewPanel from "./components/PreviewPanel";
 import TemplateSelector from "./components/TemplateSelector";
+import CategoryManager from "./components/CategoryManager";
 import { CurriculumData } from "./components/types";
 
 // Importar PdfDownloadButton dinamicamente para evitar problemas com @react-pdf/renderer no SSR
@@ -17,8 +18,10 @@ export default function Home() {
     nome: "",
     email: "",
     telefone: "",
+    resumo: "",
     experiencia: "",
     habilidades: "",
+    categories: [],
   });
   const [template, setTemplate] = useState<"modern" | "classic" | "minimal">("modern");
   const [showPreview, setShowPreview] = useState(false);
@@ -43,9 +46,10 @@ export default function Home() {
             </h2>
 
             <TemplateSelector currentTemplate={template} onTemplateChange={setTemplate} />
+
             <div className="mt-8">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Nome
+                Nome Completo
               </label>
               <input
                 type="text"
@@ -55,29 +59,45 @@ export default function Home() {
                 placeholder="Seu nome completo"
               />
             </div>
-            <div className="mt-4">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                E-mail
-              </label>
-              <input
-                type="email"
-                value={data.email}
-                onChange={(e) => setData({ ...data, email: e.target.value })}
-                className="mt-1 block w-full rounded-md border border-gray-300 bg-gray-50 p-2 text-gray-900 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                placeholder="Seu e-mail"
-              />
+
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  E-mail
+                </label>
+                <input
+                  type="email"
+                  value={data.email}
+                  onChange={(e) => setData({ ...data, email: e.target.value })}
+                  className="mt-1 block w-full rounded-md border border-gray-300 bg-gray-50 p-2 text-gray-900 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                  placeholder="seu@email.com"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Telefone
+                </label>
+                <input
+                  type="tel"
+                  value={data.telefone}
+                  onChange={(e) => setData({ ...data, telefone: e.target.value })}
+                  className="mt-1 block w-full rounded-md border border-gray-300 bg-gray-50 p-2 text-gray-900 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                  placeholder="(00) 00000-0000"
+                />
+              </div>
             </div>
+
             <div className="mt-4">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Telefone
+                Resumo Profissional
               </label>
-              <input
-                type="tel"
-                value={data.telefone}
-                onChange={(e) => setData({ ...data, telefone: e.target.value })}
+              <textarea
+                value={data.resumo}
+                onChange={(e) => setData({ ...data, resumo: e.target.value })}
                 className="mt-1 block w-full rounded-md border border-gray-300 bg-gray-50 p-2 text-gray-900 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                placeholder="Seu telefone"
-              />
+                rows={3}
+                placeholder="Um breve resumo sobre você e sua carreira"
+              ></textarea>
             </div>
             <div className="mt-4">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -100,9 +120,17 @@ export default function Home() {
                 value={data.habilidades}
                 onChange={(e) => setData({ ...data, habilidades: e.target.value })}
                 className="mt-1 block w-full rounded-md border border-gray-300 bg-gray-50 p-2 text-gray-900 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                placeholder="Suas habilidades"
+                placeholder="Separe por vírgulas (ex: JavaScript, React, Node.js)"
               />
             </div>
+
+            <div className="mt-6 border-t border-gray-200 dark:border-gray-700 pt-6">
+              <CategoryManager
+                categories={data.categories}
+                onCategoriesChange={(categories) => setData({ ...data, categories })}
+              />
+            </div>
+
             <div className="mt-8 flex gap-4">
               <button
                 onClick={() => setShowPreview(true)}

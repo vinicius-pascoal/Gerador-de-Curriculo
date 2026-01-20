@@ -4,9 +4,22 @@ export const defaultCurriculumData = {
   nome: "",
   email: "",
   telefone: "",
+  resumo: "",
   experiencia: "",
   habilidades: "",
+  categories: [],
 };
+
+export const predefinedCategories = [
+  { name: "Formação Acadêmica", icon: "🎓" },
+  { name: "Certificações", icon: "📜" },
+  { name: "Projetos", icon: "💼" },
+  { name: "Idiomas", icon: "🌍" },
+  { name: "Cursos e Treinamentos", icon: "📚" },
+  { name: "Voluntariado", icon: "🤝" },
+  { name: "Publicações", icon: "📝" },
+  { name: "Prêmios e Reconhecimentos", icon: "🏆" },
+];
 
 export const templates = {
   modern: {
