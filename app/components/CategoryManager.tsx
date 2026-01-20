@@ -113,7 +113,7 @@ export default function CategoryManager({ categories, onCategoriesChange }: Cate
 
       {categories.length === 0 ? (
         <p className="text-sm text-gray-500 dark:text-gray-400 italic">
-          Clique em "Nova Categoria" para adicionar seções personalizadas ao seu currículo
+          Clique em &ldquo;Nova Categoria&rdquo; para adicionar seções personalizadas ao seu currículo
         </p>
       ) : (
         <div className="space-y-3">

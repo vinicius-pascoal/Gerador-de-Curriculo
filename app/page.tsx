@@ -48,97 +48,104 @@ export default function Home() {
             <TemplateSelector currentTemplate={template} onTemplateChange={setTemplate} />
 
             <div className="mt-8">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                <span className="text-blue-600">👤</span>
                 Nome Completo
               </label>
               <input
                 type="text"
                 value={data.nome}
                 onChange={(e) => setData({ ...data, nome: e.target.value })}
-                className="mt-1 block w-full rounded-md border border-gray-300 bg-gray-50 p-2 text-gray-900 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                placeholder="Seu nome completo"
+                className="block w-full rounded-lg border-2 border-gray-300 bg-white p-3 text-gray-900 shadow-sm transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-30 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                placeholder="Digite seu nome completo"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4 mt-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  <span className="text-blue-600">✉️</span>
                   E-mail
                 </label>
                 <input
                   type="email"
                   value={data.email}
                   onChange={(e) => setData({ ...data, email: e.target.value })}
-                  className="mt-1 block w-full rounded-md border border-gray-300 bg-gray-50 p-2 text-gray-900 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                  className="block w-full rounded-lg border-2 border-gray-300 bg-white p-3 text-gray-900 shadow-sm transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-30 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                   placeholder="seu@email.com"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  <span className="text-blue-600">☎️</span>
                   Telefone
                 </label>
                 <input
                   type="tel"
                   value={data.telefone}
                   onChange={(e) => setData({ ...data, telefone: e.target.value })}
-                  className="mt-1 block w-full rounded-md border border-gray-300 bg-gray-50 p-2 text-gray-900 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                  className="block w-full rounded-lg border-2 border-gray-300 bg-white p-3 text-gray-900 shadow-sm transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-30 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                   placeholder="(00) 00000-0000"
                 />
               </div>
             </div>
 
             <div className="mt-4">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                <span className="text-blue-600">📝</span>
                 Resumo Profissional
               </label>
               <textarea
                 value={data.resumo}
                 onChange={(e) => setData({ ...data, resumo: e.target.value })}
-                className="mt-1 block w-full rounded-md border border-gray-300 bg-gray-50 p-2 text-gray-900 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                className="block w-full rounded-lg border-2 border-gray-300 bg-white p-3 text-gray-900 shadow-sm transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-30 dark:border-gray-600 dark:bg-gray-700 dark:text-white resize-none"
                 rows={3}
-                placeholder="Um breve resumo sobre você e sua carreira"
+                placeholder="Um breve resumo sobre você e sua carreira profissional"
               ></textarea>
             </div>
             <div className="mt-4">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                <span className="text-blue-600">💼</span>
                 Experiência Profissional
               </label>
               <textarea
                 value={data.experiencia}
                 onChange={(e) => setData({ ...data, experiencia: e.target.value })}
-                className="mt-1 block w-full rounded-md border border-gray-300 bg-gray-50 p-2 text-gray-900 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                className="block w-full rounded-lg border-2 border-gray-300 bg-white p-3 text-gray-900 shadow-sm transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-30 dark:border-gray-600 dark:bg-gray-700 dark:text-white resize-none"
                 rows={4}
-                placeholder="Descreva sua experiência profissional"
+                placeholder="Descreva suas experiências profissionais mais relevantes"
               ></textarea>
             </div>
             <div className="mt-4">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                <span className="text-blue-600">⭐</span>
                 Habilidades
               </label>
               <input
                 type="text"
                 value={data.habilidades}
                 onChange={(e) => setData({ ...data, habilidades: e.target.value })}
-                className="mt-1 block w-full rounded-md border border-gray-300 bg-gray-50 p-2 text-gray-900 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                placeholder="Separe por vírgulas (ex: JavaScript, React, Node.js)"
+                className="block w-full rounded-lg border-2 border-gray-300 bg-white p-3 text-gray-900 shadow-sm transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-30 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                placeholder="Ex: JavaScript, React, Node.js, Python (separe por vírgulas)"
               />
             </div>
 
-            <div className="mt-6 border-t border-gray-200 dark:border-gray-700 pt-6">
+            <div className="mt-6 border-t-2 border-gray-200 dark:border-gray-700 pt-6">
               <CategoryManager
                 categories={data.categories}
                 onCategoriesChange={(categories) => setData({ ...data, categories })}
               />
             </div>
 
-            <div className="mt-8 flex gap-4">
+            <div className="mt-8 flex gap-3">
               <button
                 onClick={() => setShowPreview(true)}
-                className="flex-1 rounded-md bg-blue-600 px-4 py-2 text-white shadow-md transition-all duration-200 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                className="flex-1 flex items-center justify-center gap-2 rounded-lg bg-linear-to-r from-blue-600 to-indigo-600 px-6 py-3 text-white font-semibold shadow-lg transition-all duration-200 hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
+                <span>👁️</span>
                 Visualizar Prévia
               </button>
-              <PdfDownloadButton data={data} />
+              <PdfDownloadButton data={data} template={template} />
             </div>
           </div>
 
